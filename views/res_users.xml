@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Vue formulaire utilisateur étendue -->
+        <record id="view_users_form_parc_automobile" model="ir.ui.view">
+            <field name="name">res.users.form.parc_automobile</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <!-- Ajout dans l'onglet "Preferences" -->
+                <xpath expr="//page[@name='preferences']" position="inside">
+                    <group string="Informations Employé">
+                        <field name="job_title"/>
+                        <field name="employee_id"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

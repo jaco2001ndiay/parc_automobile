@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <!-- Vue liste employés -->
+        <record id="employe_view_tree" model="ir.ui.view">
+            <field name="name">hr.employee.tree.custom</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='department_id']" position="after">
+                    <field name="voiture_actuelle_id" widget="many2one_avatar"/>
+                    <field name="permis_conduire"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Vue formulaire employés -->
+        <record id="employe_view_form" model="ir.ui.view">
+            <field name="name">hr.employee.form.custom</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='personal_information']" position="inside">
+                    <group>
+                        <field name="date_embauche"/>
+                        <field name="date_fin_contrat"/>
+                        <field name="salaire"/>
+                        <field name="permis_conduire"/>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Affectations véhicule">
+                        <field name="affectation_ids">
+                            <tree>
+                                <field name="voiture_id"/>
+                                <field name="date_debut"/>
+                                <field name="date_fin"/>
+                                <field name="type_affectation"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

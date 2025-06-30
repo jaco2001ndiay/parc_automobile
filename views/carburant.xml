@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vue Liste -->
+    <record id="view_carburant_tree" model="ir.ui.view">
+        <field name="name">carburant.tree</field>
+        <field name="model">parc.automobile.carburant</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="voiture_id"/>
+                <field name="kilometrage"/>
+                <field name="quantite_litre"/>
+                <field name="cout_total"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vue Formulaire -->
+    <record id="view_carburant_form" model="ir.ui.view">
+        <field name="name">carburant.form</field>
+        <field name="model">parc.automobile.carburant</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="voiture_id"/>
+                        <field name="date"/>
+                        <field name="kilometrage"/>
+                    </group>
+                    <group>
+                        <field name="quantite_litre"/>
+                        <field name="prix_litre"/>
+                        <field name="cout_total" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_carburant" model="ir.actions.act_window">
+        <field name="name">Suivi Carburant</field>
+        <field name="res_model">parc.automobile.carburant</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

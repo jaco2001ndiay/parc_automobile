@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+        <!-- Vue liste -->
+        <record id="voiture_view_tree" model="ir.ui.view">
+            <field name="name">parc.automobile.voiture.tree</field>
+            <field name="model">parc.automobile.voiture</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Immatriculation"/>
+                    <field name="marque_id" string="Marque"/>
+                    <field name="modele_id" string="Modèle"/>
+                    <field name="annee_fabrication" string="Année"/>
+                    <field name="kilometrage" string="Km"/>
+                    <field name="etat" string="État"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vue formulaire -->
+        <record id="voiture_view_form" model="ir.ui.view">
+            <field name="name">parc.automobile.voiture.form</field>
+            <field name="model">parc.automobile.voiture</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" string="Immatriculation"/>
+                                <field name="marque_id"/>
+                                <field name="modele_id"/>
+                                <field name="annee_fabrication"/>
+                                <field name="couleur"/>
+                            </group>
+                            <group>
+                                <field name="image" widget="image" class="oe_avatar"/>
+                                <field name="kilometrage"/>
+                                <field name="etat"/>
+                                <field name="assurance_id"/>
+                                <field name="carte_grise_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Historique">
+                                <field name="affectation_ids">
+                                    <tree>
+                                        <field name="employe_id"/>
+                                        <field name="date_debut"/>
+                                        <field name="date_fin"/>
+                                        <field name="type_affectation"/>
+                                    </tree>
+                                </field>
+                                <field name="entretien_ids">
+                                    <tree>
+                                        <field name="date_entretien"/>
+                                        <field name="type_entretien"/>
+                                        <field name="cout"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Documents">
+                                <!-- Documents associés -->
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Catégorie de groupe -->
+        <record id="module_category_parc_automobile" model="ir.module.category">
+            <field name="name">Parc Automobile</field>
+            <field name="sequence">100</field>
+        </record>
+
+        <!-- Groupe Manager -->
+        <record id="group_parc_automobile_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_category_parc_automobile"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+        </record>
+
+        <!-- Groupe User -->
+        <record id="group_parc_automobile_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_category_parc_automobile"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>

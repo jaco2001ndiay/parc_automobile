@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vue Liste -->
+    <record id="view_document_tree" model="ir.ui.view">
+        <field name="name">document.tree</field>
+        <field name="model">parc.automobile.document</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="voiture_id"/>
+                <field name="date_emission"/>
+                <field name="date_expiration"/>
+                <field name="expire_soon" invisible="1"/>
+                <field name="expired" invisible="1"/>
+                <progressbar field="state" colors='{"expired":"red","expire_soon":"orange","valid":"green"}'/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vue Formulaire -->
+    <record id="view_document_form" model="ir.ui.view">
+        <field name="name">document.form</field>
+        <field name="model">parc.automobile.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="voiture_id"/>
+                        <field name="date_emission"/>
+                        <field name="date_expiration"/>
+                        <field name="fichier" filename="filename"/>
+                    </group>
+                    <div class="notebook">
+                        <iframe src="fichier" class="oe_attachment_viewer"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_document" model="ir.actions.act_window">
+        <field name="name">Documents Administratifs</field>
+        <field name="res_model">parc.automobile.document</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_voiture_id': active_id}</field>
+    </record>
+</odoo>

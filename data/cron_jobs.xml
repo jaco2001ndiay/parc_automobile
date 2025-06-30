@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Cron pour vérifier les documents expirés -->
+<record id="cron_check_documents" model="ir.cron">
+    <field name="name">Vérifier les documents expirés</field>
+    <field name="model_id" ref="model_parc_automobile_document"/>
+    <field name="state">code</field>
+    <field name="code">model._check_expired_documents()</field>
+    <field name="interval_number">1</field>
+    <field name="interval_type">days</field>
+    <field name="numbercall">-1</field>  <!-- Correct field name -->
+</record>
+
+    <!-- Cron pour les notifications d'expiration -->
+    <record id="cron_document_expiration" model="ir.cron">
+        <field name="name">Vérifier l'expiration des documents</field>
+        <field name="model_id" ref="model_parc_automobile_document"/>
+        <field name="state">code</field>
+        <field name="code">model._send_expiration_notifications()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+           <field name="numbercall">-1</field>  <!-- Correct field name -->
+    </record>
+</odoo>

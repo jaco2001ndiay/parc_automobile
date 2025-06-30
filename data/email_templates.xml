@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="email_template_document_expiration" model="mail.template">
+        <field name="name">Alerte expiration document</field>
+        <field name="model_id" ref="model_parc_automobile_document"/>
+        <field name="subject">Alerte: Document ${object.name} expirant bientôt</field>
+        <field name="body_html">
+            <![CDATA[
+                <p>Bonjour,</p>
+                <p>Le document <strong>${object.name}</strong> du véhicule 
+                <strong>${object.voiture_id.name}</strong> expirera le ${object.date_expiration}.</p>
+                <p>Veuillez prendre les mesures nécessaires pour son renouvellement.</p>
+                <p>Cordialement,</p>
+                <p>Service Parc Automobile</p>
+            ]]>
+        </field>
+    </record>
+</odoo>

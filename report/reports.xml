@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="report_voiture"
+            string="Fiche Voiture"
+            model="parc.automobile.voiture"
+            report_type="qweb-pdf"
+            name="parc_automobile.report_voiture"
+            file="parc_automobile.report_voiture"
+        />
+    </data>
+</odoo>

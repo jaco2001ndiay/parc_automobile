@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_voiture">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <h2>Fiche Technique du Véhicule</h2>
+                        <p><strong>Immatriculation:</strong> <span t-field="doc.name"/></p>
+                        <p><strong>Marque:</strong> <span t-field="doc.marque_id.name"/></p>
+                        <p><strong>Modèle:</strong> <span t-field="doc.modele_id.name"/></p>
+                        <p><strong>Année:</strong> <span t-field="doc.annee_fabrication"/></p>
+                        <p><strong>Kilométrage:</strong> <span t-field="doc.kilometrage"/></p>
+                        <p><strong>Couleur:</strong> <span t-field="doc.couleur"/></p>
+                        <p><strong>État:</strong> <span t-field="doc.etat"/></p>
+                        
+                        <h3>Documents associés</h3>
+                        <ul>
+                            <li t-if="doc.assurance_id">
+                                Assurance: <span t-field="doc.assurance_id.numero_police"/>
+                                (Valide jusqu'au <span t-field="doc.assurance_id.date_fin"/>)
+                            </li>
+                            <li t-if="doc.carte_grise_id">
+                                Carte Grise: <span t-field="doc.carte_grise_id.name"/>
+                            </li>
+                        </ul>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

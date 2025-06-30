@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Template pour le tableau de bord -->
+        <template id="ParcAutomobileDashboard">
+            <t t-call="web.basic_layout">
+                <div class="o_parc_dashboard">
+                    <div class="row">
+                        <!-- Statistiques -->
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <h3>Véhicules</h3>
+                                <div class="stat-number" t-esc="data.voiture_count"/>
+                                <div class="stat-label">Total</div>
+                                <a href="#" class="btn btn-primary mt-2 o_dashboard_action" 
+                                   data-action="data.actions.voitures">
+                                    Voir la liste
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <h3>Entretiens</h3>
+                                <div class="stat-number" t-esc="data.entretien_count"/>
+                                <div class="stat-label">Total effectués</div>
+                                <a href="#" class="btn btn-primary mt-2 o_dashboard_action" 
+                                   data-action="data.actions.entretiens">
+                                    Voir la liste
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <h3>Documents <span t-if="data.expired_docs &gt; 0" class="o_alert_badge" t-esc="data.expired_docs"/></h3>
+                                <div class="text-danger" t-if="data.expired_docs &gt; 0">
+                                    <i class="fa fa-exclamation-triangle"/> 
+                                    <span t-esc="data.expired_docs"/> expirés
+                                </div>
+                                <div class="text-success" t-else="">
+                                    Tous à jour
+                                </div>
+                                <a href="#" class="btn btn-primary mt-2 o_dashboard_action" 
+                                   data-action="data.actions.documents">
+                                    Vérifier
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <h3>Maintenance</h3>
+                                <div t-if="data.maintenance_needed &gt; 0" class="text-warning">
+                                    <i class="fa fa-wrench"/> 
+                                    <span t-esc="data.maintenance_needed"/> véhicules
+                                </div>
+                                <div t-else="" class="text-success">
+                                    Aucun entretien requis
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Graphiques -->
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <h3>Consommation de carburant</h3>
+                                <div class="chart-container">
+                                    <canvas id="fuelConsumptionChart"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <h3>État des véhicules</h3>
+                                <div class="chart-container">
+                                    <canvas id="vehicleStateChart"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Véhicules nécessitant attention -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <h3>Véhicules nécessitant attention</h3>
+                                <div class="o_vehicle_list">
+                                    <!-- Contenu dynamique via JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Action client pour le tableau de bord -->
+        <record id="action_parc_dashboard" model="ir.actions.client">
+            <field name="name">Tableau de Bord Parc Auto</field>
+            <field name="tag">parc_automobile_dashboard</field>
+        </record>
+
+        <!-- Menu pour le tableau de bord -->
+        <menuitem id="menu_parc_dashboard" 
+                  name="Tableau de Bord" 
+                  parent="menu_parc_automobile_root" 
+                  action="action_parc_dashboard"
+                  sequence="1"/>
+    </data>
+</odoo>
