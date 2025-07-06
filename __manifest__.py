@@ -23,11 +23,10 @@
         'report/templates/voiture_report.xml',
         
         # Vues
-        'views/menu.xml',
         'views/client.xml',
         'views/marque.xml',
         'views/modele.xml',
-        'views/voiture.xml',
+        'views/voiture.xml',  # Contient les actions
         'views/assurance.xml',
         'views/carte_grise.xml',
         'views/contrat_location.xml',
@@ -38,6 +37,9 @@
         'views/res_users.xml',
         'views/document.xml',
         'views/dashboard.xml',
+        
+        # Charger le menu EN DERNIER
+        'views/menu.xml',
     ],
     'assets': {
         'web.assets_backend': [

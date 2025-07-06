@@ -8,21 +8,13 @@ class ResUsers(models.Model):
     
     @api.model_create_multi
     def create(self, vals_list):
+        # Pas de logique de séquence nécessaire
         return super().create(vals_list)
     
-    @api.constrains('employee_ids')
-    def _check_employee_user(self):
-        """Empêcher plusieurs utilisateurs pour le même employé"""
-        for user in self:
-            if user.employee_id:
-                existing = self.search([
-                    ('employee_id', '=', user.employee_id.id),
-                    ('id', '!=', user.id)
-                ], limit=1)
-                if existing:
-                    raise ValidationError("Cet employé est déjà associé à un autre utilisateur")
+    # Remove the problematic constraint from here
+    # We'll move it to the hr.employee model instead
     
     def get_associated_employee(self):
-        """Simplified method using standard fields"""
+        """Méthode utilitaire pour récupérer l'employé associé"""
         self.ensure_one()
         return self.employee_ids[0] if self.employee_ids else False

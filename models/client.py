@@ -11,4 +11,7 @@ class Client(models.Model):
     image = fields.Binary(string="Photo")
     @api.model_create_multi
     def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('name', 'Nouveau') == 'Nouveau':
+                vals['name'] = self.env['ir.sequence'].next_by_code('parc.automobile.client') or 'Nouveau'
         return super().create(vals_list)

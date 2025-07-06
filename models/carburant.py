@@ -34,6 +34,7 @@ class Carburant(models.Model):
     )
     @api.model_create_multi
     def create(self, vals_list):
+            # Pas de logique de séquence nécessaire
         return super().create(vals_list)
     @api.depends('quantite_litre', 'prix_litre')
     def _compute_cout(self):

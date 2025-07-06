@@ -48,10 +48,10 @@ class Voiture(models.Model):
         'voiture_id', 
         string="Entretiens"
     )
+    
     @api.model_create_multi
     def create(self, vals_list):
         return super().create(vals_list)
-
     @api.constrains('name')
     def _check_immatriculation(self):
         for record in self:

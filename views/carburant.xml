@@ -14,7 +14,16 @@
             </tree>
         </field>
     </record>
-
+    <record id="action_parc_automobile_voiture" model="ir.actions.act_window">
+        <field name="name">Carburants</field>
+        <field name="res_model">parc.automobile.carburant</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Ajouter un noueau carburant
+            </p>
+        </field>
+    </record>
     <!-- Vue Formulaire -->
     <record id="view_carburant_form" model="ir.ui.view">
         <field name="name">carburant.form</field>

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
+        <record id="action_parc_automobile_modele" model="ir.actions.act_window">
+            <field name="name">Modeles</field>
+            <field name="res_model">parc.automobile.modele</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Ajouter un noueau modele de voiture.
+                </p>
+            </field>
+        </record>
         <record id="parc_automobile_modele_view_list" model="ir.ui.view">
             <field name="name">parc.automobile.modele.view.list</field>
             <field name="model">parc.automobile.modele</field>
@@ -10,7 +19,7 @@
                     <field name="name" />
                     <field name="marque_id" />
                     <field name="type_carrosserie" />
-                    <field name="consomation" />
+                    <field name="consommation" />
                     <field name="puissance" />
                 </list>
             </field>
@@ -29,7 +38,7 @@
                                 <field name="type_carrosserie" />
                             </group>
                             <group>
-                                <field name="consomation" /> 
+                                <field name="consommation" /> 
                                 <field name="puissance" /> 
                             </group>
                         </group>

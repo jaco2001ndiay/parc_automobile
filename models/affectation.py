@@ -33,6 +33,7 @@ class Affectation(models.Model):
     ]
     @api.model_create_multi
     def create(self, vals_list):
+        # Pas de logique de séquence nécessaire
         return super().create(vals_list)
     @api.constrains('voiture_id', 'date_debut', 'date_fin')
     def _check_affectation_overlap(self):

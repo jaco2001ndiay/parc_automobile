@@ -12,6 +12,12 @@ class Document(models.Model):
         ('assurance', 'Attestation Assurance'),
         ('carte_grise', 'Carte Grise')
     ], string="Type de document", required=True)
+    reference = fields.Char(
+        string="Référence",
+        readonly=True,
+        copy=False,
+        default='Nouveau'
+    )
     voiture_id = fields.Many2one(
         'parc.automobile.voiture', 
         string="Véhicule", 
@@ -25,13 +31,13 @@ class Document(models.Model):
         string="Date d'expiration",
         required=True
     )
-    fichier = fields.Binary(string="Fichier")
-    note = fields.Text(string="Notes")
 
     @api.model_create_multi
     def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('reference', 'Nouveau') == 'Nouveau':
+                vals['reference'] = self.env['ir.sequence'].next_by_code('parc.automobile.document') or 'Nouveau'
         return super().create(vals_list)
-
     @api.constrains('date_emission', 'date_expiration')
     def _check_dates(self):
         for record in self:

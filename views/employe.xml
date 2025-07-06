@@ -1,5 +1,15 @@
 <odoo>
     <data>
+        <record id="action_parc_automobile_employe" model="ir.actions.act_window">
+            <field name="name">Employes</field>
+            <field name="res_model">parc.automobile.employe</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Ajouter un noueau employe
+                </p>
+            </field>
+        </record>
         <!-- Vue liste employés -->
         <record id="employe_view_tree" model="ir.ui.view">
             <field name="name">hr.employee.tree.custom</field>

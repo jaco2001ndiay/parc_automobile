@@ -35,13 +35,10 @@ class ContratLocation(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        return super().create(vals_list)
-    
-    @api.model
-    def create(self, vals):
-        if vals.get('name', 'Nouveau') == 'Nouveau':
-            vals['name'] = self.env['ir.sequence'].next_by_code('parc.automobile.contrat.location') or 'Nouveau'
-        return super().create(vals)
+        for vals in vals_list:
+            if vals.get('name', 'Nouveau') == 'Nouveau':
+                vals['name'] = self.env['ir.sequence'].next_by_code('parc.automobile.contrat.location') or 'Nouveau'
+        return super().create(vals_list)        
     
     @api.constrains('date_debut', 'date_fin')
     def _check_dates(self):

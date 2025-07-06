@@ -10,26 +10,23 @@ class ParcAutomobileDashboard(models.Model):
         voiture_count = self.env['parc.automobile.voiture'].search_count([])
         entretien_count = self.env['parc.automobile.entretien'].search_count([])
         affectation_count = self.env['parc.automobile.affectation'].search_count([])
-        
-    @api.model_create_multi
-    def create(self, vals_list):
-        return super().create(vals_list)        
+
         # Documents expirés
         expired_docs = self.env['parc.automobile.document'].search_count([
             ('date_expiration', '<', fields.Date.today())
         ])
-        
+
         # Véhicules nécessitant un entretien
         maintenance_needed = self.env['parc.automobile.voiture'].search_count([
             ('etat', '=', 'en_entretien')
         ])
-        
+
         # Consommation de carburant (exemple)
         fuel_data = {
             'labels': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
             'values': [8.2, 7.9, 8.5, 9.1, 8.7, 8.3]
         }
-        
+
         # État des véhicules
         Vehicle = self.env['parc.automobile.voiture']
         states = {
@@ -38,7 +35,7 @@ class ParcAutomobileDashboard(models.Model):
             'en_entretien': Vehicle.search_count([('etat', '=', 'en_entretien')]),
             'hors_service': Vehicle.search_count([('etat', '=', 'hors_service')]),
         }
-        
+
         return {
             'voiture_count': voiture_count,
             'entretien_count': entretien_count,
@@ -56,3 +53,8 @@ class ParcAutomobileDashboard(models.Model):
                 'documents': self.env.ref('parc_automobile.action_document').id,
             }
         }
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        # Pas de logique de séquence nécessaire
+        return super().create(vals_list)

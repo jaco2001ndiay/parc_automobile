@@ -26,18 +26,22 @@ class HrEmployee(models.Model):
     permis_conduire = fields.Char(string="Numéro permis")
     @api.model_create_multi
     def create(self, vals_list):
+        # Pas de logique de séquence nécessaire
         return super().create(vals_list)
-
-
     @api.depends('affectation_ids', 'affectation_ids.date_fin')
     def _compute_voiture_actuelle(self):
         today = fields.Date.today()
         for emp in self:
-            affectation_active = emp.affectation_ids.filtered(
-                lambda a: not a.date_fin or a.date_fin > today
-            ).sorted('date_debut', reverse=True)
-            emp.voiture_actuelle_id = affectation_active[0].voiture_id if affectation_active else False
-    
+            # Optimisation : limiter la recherche
+            affectation_active = self.env['parc.automobile.affectation'].search([
+                ('employe_id', '=', emp.id),
+                ('date_debut', '<=', today),
+                '|',
+                ('date_fin', '=', False),
+                ('date_fin', '>=', today)
+            ], order='date_debut desc', limit=1)
+            
+            emp.voiture_actuelle_id = affectation_active.voiture_id if affectation_active else False
     @api.constrains('date_embauche', 'date_fin_contrat')
     def _check_dates(self):
         for record in self:

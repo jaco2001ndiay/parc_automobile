@@ -1,5 +1,15 @@
 <odoo>
     <data>
+        <record id="action_parc_automobile_voiture" model="ir.actions.act_window">
+            <field name="name">Voitures</field>
+            <field name="res_model">parc.automobile.voiture</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Ajouter un noueau voiture
+                </p>
+            </field>
+        </record>
         <!-- Vue liste -->
         <record id="voiture_view_tree" model="ir.ui.view">
             <field name="name">parc.automobile.voiture.tree</field>

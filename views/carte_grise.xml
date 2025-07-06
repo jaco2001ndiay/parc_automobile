@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
+        <record id="action_parc_automobile_carte_grise" model="ir.actions.act_window">
+            <field name="name">Carte Grises</field>
+            <field name="res_model">parc.automobile.carte_grise</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Ajouter un nouveau document de carte grise pour une voiture.
+                </p>
+            </field>
+        </record>
         <record id="parc_automobile_carte_grise_view_list" model="ir.ui.view">
             <field name="name">parc.automobile.carte.grise.view.list</field>
             <field name="model">parc.automobile.carte.grise</field>

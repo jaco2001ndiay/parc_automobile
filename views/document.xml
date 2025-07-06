@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+        <record id="action_parc_automobile_document" model="ir.actions.act_window">
+            <field name="name">Documents</field>
+            <field name="res_model">parc.automobile.document</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Ajouter un noueau document
+                </p>
+            </field>
+        </record>
     <!-- Vue Liste -->
     <record id="view_document_tree" model="ir.ui.view">
         <field name="name">document.tree</field>
